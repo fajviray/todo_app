@@ -1,0 +1,4 @@
+debugger;
+m = $('#task-modal');
+m.html('<%= j(render partial: "tasks/form", locals: {project: @project, task: @task}) %>');
+m.modal('show');

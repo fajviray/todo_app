@@ -1,0 +1,42 @@
+<div id="main">
+	<%= link_to new_project_path, remote: true do %>
+		<button class="btn btn-primary" id="add_project"> Add Project </button>
+	<% end %>
+	<div id="project_form"></div>
+	
+	<table id="projectList" class='table table-striped'>
+		<thead>
+			<tr>
+				<td> Project Name</td>
+			</tr>
+		</thead>
+		<tbody>
+		<% @projects.each do |p| %>
+		<tr id="row_<%=p.id%>">
+			<td><div id="id_<%=p.id%>"> <%= p.title %> </div></td>
+			<td><%= link_to edit_project_path(p), remote: true do %>
+			    <button class="buttonDetail">Details</button>
+			<% end %></td>
+	  	<td><%= link_to "Delete", project_path(p), remote: true, method: :delete, class: "btn_delete" %></td>
+	  </tr>
+		<% end %>
+		</tbody>
+	</table>
+</div>
+<div id="detail_content">
+	<%= link_to 'Return', root_path, remote: true, class: "returnList" %>
+
+	<div id="project_updform"></div>
+
+	<div id="task_conatiner">
+		<div id="add_task"></div>
+		<div id="task-modal"></div>
+		<table id="taskList" class="table table-striped">
+			<thead><tr><td>ToDos</td></tr></thead>
+			<tbody></tbody>
+		</table>
+	</div>
+
+	
+
+</div>

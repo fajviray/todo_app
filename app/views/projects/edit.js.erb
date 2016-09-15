@@ -1,0 +1,4 @@
+$('#main').hide();
+$('#detail_content').show();
+$('#project_updform').html("<%= j (render 'form') %>");
+$('#add_task').wrap('<%= link_to "Add Task", new_project_task_path(@project.id), remote: true %>');
