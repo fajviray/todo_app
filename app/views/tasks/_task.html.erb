@@ -1,0 +1,13 @@
+<% @project.tasks.each do |t| %>
+<tr id="row_<%= t.id %>">
+	<td>
+		<div id="id_<%= t.id %>"> <%= t.note %> </div>
+	</td>
+	<td>
+		<div> <%= link_to edit_project_task_path(t), remote: true do %>
+			    <button>Edit</button>
+			<% end %>
+		</div>
+	</td>
+</tr>
+<% end %>

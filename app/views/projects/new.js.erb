@@ -1,10 +1,16 @@
+form = $("#project_form");
+button = $('#add_project');
+list = $("#projectList");
+
 if(window.showForm){
-	$("#project_form").hide();
+	form.hide();
+	list.show();
 	window.showForm = false;
-	$('#add_project').html("Add Project");
+	button.html("Add Project");
 } else {
-	$('#project_form').html("<%= j (render 'form') %>");
-	$("#project_form").show();
+	form.html("<%= j (render 'form') %>");
+	form.show();
+	list.hide();
 	window.showForm = true;
-	$('#add_project').html("Close");
+	button.html("Close");
 }

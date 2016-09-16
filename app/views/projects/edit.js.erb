@@ -1,4 +1,5 @@
-$('#main').hide();
+$('#submain').hide();
 $('#detail_content').show();
 $('#project_updform').html("<%= j (render 'form') %>");
-$('#add_task').wrap('<%= link_to "Add Task", new_project_task_path(@project.id), remote: true %>');
+$('#add_task').html('<%= link_to new_project_task_path(@project.id), remote: true do %> <button class="btn btn-primary" data-toggle="modal" data-target="task-modal">Add Task</button> <% end %>');
+$('#task_content').html("<%= j (render 'tasks/task') %>");

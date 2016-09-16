@@ -27,7 +27,7 @@ class ProjectsController < ApplicationController
 
   def edit
   	@project = Project.find(params[:id])
-  	
+  	@tasks = @project.tasks
   	respond_to do |f|
   		f.js
   	end

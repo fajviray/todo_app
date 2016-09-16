@@ -12,5 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery
+//= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+
+
+$(document).ready(function() {
+
+	$('.returnList').click(function() {
+		$('#detail_content').hide();
+		$('#submain').show();
+	});
+});

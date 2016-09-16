@@ -1,13 +1,21 @@
-<div class="modal-header">
-	<h1> New Task </h1>
-</div>
+<div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h1> New Task </h1>
+		</div>
 
-<%= form_for [project,task], remote: true do |f| %>
-<div class="modal-body">
-	<%= f.text_area :note %>
-</div>
+		<%= form_for [project,task], remote: true do |f| %>
+		<div class="modal-body">
+			<%= f.text_field :member_id, hidden: true, value: current_member.id %>
+			<div class="form-group">
+				<%= f.text_area :note, required: true, class: "form-control" %>
+			</div>
+		</div>
 
-<div class="modal-footer">
-	<%= f.submit %>
+		<div class="modal-footer">
+			<%= f.submit 'Add Task', class: "btn btn-primary" %>
+			<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+		</div>
+		<% end %>
+	</div>
 </div>
-<% end %>
