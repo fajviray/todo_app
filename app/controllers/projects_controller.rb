@@ -7,55 +7,35 @@ class ProjectsController < ApplicationController
 
   def new
   	@project = Project.new
-  	respond_to do |f|
-  		f.js
-  	end
   end
 
   def create
   	@project = Project.new(permitted_params)
-
-  	respond_to do |f|
-      if @project.save
-        f.js
-      else
-        f.js { render js: "alert('error');" }
-      end
-    end
-
+    @project.save
   end
 
   def edit
-  	@project = Project.find(params[:id])
-  	@tasks = @project.tasks
-  	respond_to do |f|
-  		f.js
-  	end
+  	@project = set_project(params[:id])
   end
 
   def update
-  	@project = Project.find(params[:id])
+  	@project = set_project(params[:id])
 
-  	respond_to do |f|
-  		if @project.update(permitted_params)
-	  		f.js
-	  	end
-  	end
+    @project.update(permitted_params)
   end
 
   def destroy
-  	@project = Project.find(params[:id])
+  	@project = set_project(params[:id])
 
-  	respond_to do |f|
-  		if @project.destroy
-	  		f.js
-	  	else
-	  		f.js { render js: "alert('error');" }
-	  	end
-  	end
+  	@project.destroy
   end
 
   private
+
+    def set_project(id)
+      project = Project.find(id)
+    end
+
   	def permitted_params
   		params.require(:project).permit(
         :title,

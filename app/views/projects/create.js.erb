@@ -1,7 +1,10 @@
 debugger;
-$('#project_container').prepend($('<tr/>').append($('<td/>').append('<%= @project.title %>')));
-
 $("#new_project")[0].reset();
 $('#project_form').hide();
 $('#add_project').html('Add Project');
 $("#projectList").show();
+div = $('<div/>').attr('id','id_<%= @project.id %>').html('<h4><%= @project.title %></h4>');
+tdedit = $('<td/>').html('<%= link_to edit_project_path(@project.id), remote: true do %> <button class="btn btn-primary buttonDetail"><span class="glyphicon glyphicon-folder-open"></span></button> <% end %>');
+tddelete = $('<td/>').html('<%= link_to project_path(@project.id), remote: true, method: :delete do %> <button class="btn btn-danger">Delete</button> <% end %>');
+c = $('<tr/>').attr('id','row_<%= @project.id %>').append(tddelete).append(tdedit).append($('<td/>').append(div));
+$('#project_container').prepend(c);

@@ -1,13 +1,17 @@
-<% @project.tasks.each do |t| %>
-<tr id="row_<%= t.id %>">
+<% @project.tasks.reverse_order.each do |t| %>
+<tr id="trow_<%= t.id %>">
 	<td>
-		<div id="id_<%= t.id %>"> <%= t.note %> </div>
+		<div id="tid_<%= t.id %>"> <%= t.note %> </div>
 	</td>
-	<td>
-		<div> <%= link_to edit_project_task_path(t), remote: true do %>
-			    <button>Edit</button>
+	<td width="2px">
+		<%= link_to edit_project_task_path(@project.id,t.id), remote: true do %>
+			    <button class="btn btn-primary">Edit</button>
 			<% end %>
-		</div>
+	</td>
+	<td width="2px">
+		<%= link_to project_task_path(@project.id,t.id), remote: true, method: :delete do %>
+			<button class="btn btn-danger">Delete</button>
+		<% end %>
 	</td>
 </tr>
 <% end %>

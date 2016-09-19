@@ -1,3 +1,6 @@
 $('#task-modal').modal('toggle');
-debugger;
-$('#task_content').append($('<tr/>').append($('<td/>').append('<%= @task.note %>')));
+div = $('<div/>').attr('id','tid_<%= @task.id %>').html('<%= @task.note %>');
+tdedit = $('<td/>').html('<%= link_to edit_project_task_path(@task.project_id,@task.id), remote: true do %> <button class="btn btn-primary">Edit</button> <% end %>');
+tddelete = $('<td/>').html('<%= link_to project_task_path(@task.project_id,@task.id), remote: true, method: :delete do %> <button class="btn btn-danger">Delete</button> <% end %>');
+c = $('<tr/>').attr('id','trow_<%= @task.id %>').append($('<td/>').append(div)).append(tdedit).append(tddelete);
+$('#task_content').prepend(c);

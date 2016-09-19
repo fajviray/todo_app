@@ -1,0 +1,9 @@
+<% @tasks.each do |t| %>
+	<tr>
+		<td><%= t.note %></td>
+		<td><%= t.try(:assignee).try(:firstname) %></td>
+		<td><%= t.try(:assignor).try(:firstname) %></td>
+		<td><%= get_progress(t.status) %></td>
+		<td><%= t.project.title %></td>
+	</tr>
+<% end %>

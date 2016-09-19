@@ -1,19 +1,27 @@
 <div class="modal-dialog">
 	<div class="modal-content">
 		<div class="modal-header">
-			<h1> New Task </h1>
+			<h1 id="title"></h1>
 		</div>
 
 		<%= form_for [project,task], remote: true do |f| %>
 		<div class="modal-body">
-			<%= f.text_field :member_id, hidden: true, value: current_member.id %>
+			<%= f.label :ToDo, class: "col-sm-1 col-form-label" %>
 			<div class="form-group">
 				<%= f.text_area :note, required: true, class: "form-control" %>
+			</div>
+			<%= f.label :status, class: "col-sm-1 col-form-label" %>
+			<div class="form-group">
+				<%= f.select :status,options_for_select([ ['Started', '1'], ['Cancelled', '2'], ['Finished', '3'] ], f.object.status),{}, {class: "form-control selectpicker"} %>
+			</div>
+			<%= f.label :assignee, class: "col-sm-1 col-form-label" %>
+			<div class="form-group">
+				<%= f.select :assignee_id, options_for_select(Member.all.map{|m| [fullname(m.firstname,m.lastname), m.id]}, f.object.assignee_id), {}, {class: "form-control selectpicker"} %>
 			</div>
 		</div>
 
 		<div class="modal-footer">
-			<%= f.submit 'Add Task', class: "btn btn-primary" %>
+			<%= f.submit 'Submit', class: "btn btn-primary" %>
 			<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 		</div>
 		<% end %>

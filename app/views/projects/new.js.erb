@@ -7,10 +7,12 @@ if(window.showForm){
 	list.show();
 	window.showForm = false;
 	button.html("Add Project");
+	button.removeClass("btn-danger").addClass("btn-primary");
 } else {
 	form.html("<%= j (render 'form') %>");
 	form.show();
 	list.hide();
 	window.showForm = true;
-	button.html("Close");
+	button.html("Close")
+	button.removeClass("btn-primary").addClass("btn-danger");
 }

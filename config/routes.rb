@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'projects/index'
+  get '/tasks', to: 'tasks#index'
 
   devise_for :members
 

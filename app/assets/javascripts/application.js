@@ -22,6 +22,7 @@ $(document).ready(function() {
 
 	$('.returnList').click(function() {
 		$('#detail_content').hide();
+		$('#task-all').hide();
 		$('#submain').show();
 	});
 });
